@@ -10,17 +10,23 @@ export type User = {
 };
 
 export type AppStateType = {
-  user: User | undefined;
+  currentUser: User | undefined;
   isLoggedIn: boolean;
   setUser: (user: User) => void;
+  getUser: () => User | undefined;
 };
 
 export const AppState: AppStateType = {
-  user: undefined,
+  currentUser: undefined,
   isLoggedIn: false,
   setUser(newUser: User) {
-    if (!this.user) {
-      this.user = newUser;
+    this.currentUser = newUser;
+  },
+  getUser() {
+    if (this.currentUser) {
+      return this.currentUser;
+    } else {
+      return undefined;
     }
   },
 };
